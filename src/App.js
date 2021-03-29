@@ -28,11 +28,11 @@ class App extends React.Component {
       "You Don't Have to Face This Silently",
     ],
     comments: [{ id: 1, text: "hi" }],
-    newComment: [{ id: "", text: "" }],
+    newComment: "",
   };
 
   createNewComment = (event) => {
-    this.setState({ newComment: { text: event.target.value } });
+    this.setState({ newComment: event.target.value });
   };
 
   handleNewComment = (event) => {
@@ -40,11 +40,11 @@ class App extends React.Component {
 
     let newComment = {
       id: this.state.comments.length + 1,
-      text: this.state.newComment.text,
+      text: this.state.newComment,
     };
 
     this.setState((state) => {
-      if (this.state.newComment.title !== "") {
+      if (this.state.newComment !== "") {
         return {
           comments: [...state.comments, newComment],
         };
@@ -52,7 +52,7 @@ class App extends React.Component {
     });
 
     this.setState({
-      newComment: [{ id: "", text: "" }],
+      newComment: "",
     });
   };
 
@@ -74,23 +74,23 @@ class App extends React.Component {
         <div className="post">
           <input
             type="text"
-            onChange={() => this.createNewComment}
-            value={this.newComment}
+            onChange={this.createNewComment}
+            value={this.state.newComment}
           />
           <button onClick={this.handleNewComment} type="submit">
             RELEASE
           </button>
         </div>
         <section>
-          <div className="submissions">
-            {this.state.comments.map((comment) => {
-              return (
+          {this.state.comments.map((comment) => {
+            return (
+              <div className="submissions">
                 <p className="sub-text" key={comment.id}>
                   {comment.text}
                 </p>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </section>
       </div>
     );
