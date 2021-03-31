@@ -31,6 +31,8 @@ class App extends React.Component {
     newComment: "",
   };
 
+  randomIndex = Math.floor(Math.random() * this.state.titles.length);
+
   createNewComment = (event) => {
     this.setState({ newComment: event.target.value });
   };
@@ -64,13 +66,7 @@ class App extends React.Component {
           Welcome, friend. This is where anonymity meets compassion. Pour your
           heart out in this safe space. No judgements. Scream into the void.
         </p>
-        <h1>
-          {
-            this.state.titles[
-              Math.floor(Math.random() * this.state.titles.length)
-            ]
-          }
-        </h1>
+        <h1>{this.state.titles[this.randomIndex]}</h1>
         <div className="post">
           <input
             type="text"
