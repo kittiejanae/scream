@@ -27,7 +27,7 @@ class App extends React.Component {
       "No Need to Bite Your Tongue Here",
       "You Don't Have to Face This Silently",
     ],
-    comments: [{ id: 1, text: "hi" }],
+    comments: [],
     newComment: "",
   };
 
@@ -39,6 +39,10 @@ class App extends React.Component {
 
   handleNewComment = (event) => {
     event.preventDefault();
+
+    fetch("http://localhost:3000").then((dataB) => {
+      console.log(dataB);
+    });
 
     let newComment = {
       id: this.state.comments.length + 1,
